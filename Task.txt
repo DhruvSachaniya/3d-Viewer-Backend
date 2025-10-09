@@ -1,0 +1,4 @@
+// setup backend
+// implement graphql
+// database with hasura
+// setup pipeline
