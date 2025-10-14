@@ -1,4 +1,5 @@
 // setup backend
 // implement graphql
 // database with hasura
+// setup husky, pretier, fix cf
 // setup pipeline

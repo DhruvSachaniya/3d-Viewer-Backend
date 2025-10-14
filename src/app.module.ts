@@ -1,18 +1,18 @@
 /* eslint-disable prettier/prettier */
-// app.module.ts
 import { Module } from '@nestjs/common';
 import { MikroOrmModule } from '@mikro-orm/nestjs';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { mikroOrmConfigFactory } from 'mikro-orm.config';
+import { mikroOrmConfigFactory } from '../mikro-orm.factory';
+import { join } from 'path';
+import { TestResolver } from './Test/test.resolver';
 
 @Module({
   imports: [
-    ConfigModule.forRoot({
-      isGlobal: true,
-    }),
+    ConfigModule.forRoot({ isGlobal: true }),
 
+    // NestJS runtime config
     MikroOrmModule.forRootAsync({
       imports: [ConfigModule],
       useFactory: mikroOrmConfigFactory,
@@ -21,8 +21,10 @@ import { mikroOrmConfigFactory } from 'mikro-orm.config';
 
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
-      autoSchemaFile: process.cwd() + '/src/schema.gql',
+      autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
+      playground: true,
     }),
   ],
+  providers: [TestResolver],
 })
 export class AppModule {}
