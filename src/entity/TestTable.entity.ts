@@ -2,7 +2,6 @@ import { Entity, PrimaryKey, Property } from '@mikro-orm/core';
 
 @Entity({ tableName: 'Test_table', comment: 'this is only for test' })
 export class TestTable {
-
   @PrimaryKey()
   id!: number;
 
@@ -11,5 +10,4 @@ export class TestTable {
 
   @Property({ fieldName: 'Test_Number' })
   TestNumber!: number;
-
 }

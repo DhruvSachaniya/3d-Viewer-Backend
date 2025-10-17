@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+set -e
+
+echo "✅ Running lint check..."
+npx eslint . --max-warnings=0 || echo "⚠️ Lint warnings detected, but commit allowed."
+
+echo "✅ Formatting check..."
+npx prettier --check . || echo "⚠️ Formatting issues detected, but commit allowed."
+
+echo "✅ Commit checks completed."
